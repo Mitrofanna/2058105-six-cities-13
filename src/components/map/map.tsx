@@ -26,8 +26,8 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-function Map({cards, activeCard, city, isMainPage}: MapProps): JSX.Element {
-
+function Map(props: MapProps): JSX.Element {
+const {cards, activeCard, city, isMainPage} = props;
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
@@ -42,7 +42,7 @@ function Map({cards, activeCard, city, isMainPage}: MapProps): JSX.Element {
 
         marker
           .setIcon(
-            activeCard !== undefined && card.id === activeCard.id
+            activeCard !== undefined && card.title === activeCard.title
               ? currentCustomIcon
               : defaultCustomIcon
           )

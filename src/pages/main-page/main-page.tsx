@@ -5,6 +5,8 @@ import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { cities } from '../../const';
 import Map from '../../components/map/map';
+import EmptyCardList from '../../components/empty-card-list/empty-card-list';
+
 export type MainPageProps = {
 	cards: CardProps[];
 }
@@ -23,7 +25,8 @@ function MainPage({cards}: MainPageProps): JSX.Element {
 	}
 
 	const [selectedCity, setCity] = useState<string>(cities[0]);
-
+	
+	
 	return (
 		<div className="page page--gray page--main">
 			<Helmet>
@@ -34,7 +37,7 @@ function MainPage({cards}: MainPageProps): JSX.Element {
 				<h1 className="visually-hidden">Cities</h1>
 				<div className="tabs">
 					<section className="locations container">
-						<ul className="locations__list tabs__list ">
+						<ul className="locations__list tabs__list">
 							{cities.map((city) => (
 								<li key={city} className="locations__item">
 									<a className={`locations__item-link tabs__item ${city === selectedCity ? 'tabs__item--active' : ''}`}
@@ -72,20 +75,16 @@ function MainPage({cards}: MainPageProps): JSX.Element {
 							</div>
 						</section>
 						<div className="cities__right-section">
-						<Map />
+						<Map
+							cards={offersSorted}
+							city={offersSorted[0]}
+							activeCard={offersSorted[selectedCity]}
+							isMainPage
+						/>
 						</div>
 					</div>
-				</div> : <div className="cities">
-					<div className="cities__places-container cities__places-container--empty container">
-						<section className="cities__no-places">
-							<div className="cities__status-wrapper tabs__content">
-								<b className="cities__status">No places to stay available</b>
-								<p className="cities__status-description">We could not find any property available at the moment in {selectedCity}</p>
-							</div>
-						</section>
-						<div className="cities__right-section"></div>
-					</div>
-        		</div>}
+				</div> : <EmptyCardList />
+        		}
 
 			</main>
 		</div>
