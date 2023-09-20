@@ -10,6 +10,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
 	<React.StrictMode>
-		<App cards={cards} fullCards={fullCards}/>
+		<App cards={cards} fullCards={fullCards} />
 	</React.StrictMode>
 );

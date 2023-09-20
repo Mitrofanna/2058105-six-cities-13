@@ -1,4 +1,4 @@
-const cities = [
+const CITIES = [
 	'Paris',
 	'Cologne',
 	'Brussels',
@@ -26,4 +26,4 @@ const URL_MARKER_DEFAULT =
 const URL_MARKER_CURRENT =
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg';
 
-export {cities, AppRoute, AuthorizationStatus, URL_MARKER_CURRENT, URL_MARKER_DEFAULT};
+export {CITIES, AppRoute, AuthorizationStatus, URL_MARKER_CURRENT, URL_MARKER_DEFAULT};

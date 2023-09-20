@@ -21,7 +21,7 @@ function App({cards, fullCards}: AppOfferProps): JSX.Element {
 		<HelmetProvider>
 			<BrowserRouter>
 				<Routes>
-					<Route path={AppRoute.Main} element={<MainPage cards = {cards}/>} />
+					<Route path={AppRoute.Main} element={<MainPage cards={cards} />} />
 					<Route path={AppRoute.Login} element={<LoginPage />} />
 					<Route path={AppRoute.Offer} element={<OfferPage fullCards={fullCards} cards={cards}/>} />
 					<Route path={AppRoute.Favorites} element={<PrivateRoute authorizationStatus={AuthorizationStatus.Auth}><FavoritesPage cards={cards}/></PrivateRoute>} />

@@ -3,11 +3,6 @@ export type Location = {
     longitude: number;
     zoom: number;
 }
-  
-export type City = {
-    name: string;
-    location: Location;
-}
 
 export type CardProps = {
     id: string;
@@ -18,7 +13,10 @@ export type CardProps = {
     isFavorite: boolean;
     isPremium?: boolean;
     rating: number;
-    city: City; 
+    city: {
+		name: string;
+		location: Location;
+	};
     location: Location;     
 }
 

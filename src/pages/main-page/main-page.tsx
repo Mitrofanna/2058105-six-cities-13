@@ -3,7 +3,7 @@ import Header from '../../components/header/header';
 import { CardProps } from '../../components/card/type';
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { cities } from '../../const';
+import { CITIES } from '../../const';
 import Map from '../../components/map/map';
 import EmptyCardList from '../../components/empty-card-list/empty-card-list';
 
@@ -11,7 +11,8 @@ export type MainPageProps = {
 	cards: CardProps[];
 }
 
-function MainPage({cards}: MainPageProps): JSX.Element {
+function MainPage(props: MainPageProps): JSX.Element {
+	const {cards} = props
 	const offersSorted : Record<string, CardProps[]> = {};
 	  
 	for(const card of cards) {
@@ -24,7 +25,7 @@ function MainPage({cards}: MainPageProps): JSX.Element {
 		continue;
 	}
 
-	const [selectedCity, setCity] = useState<string>(cities[0]);
+	const [selectedCity, setSelectedCity] = useState<string>(CITIES[0]);
 	
 	
 	return (
@@ -38,10 +39,10 @@ function MainPage({cards}: MainPageProps): JSX.Element {
 				<div className="tabs">
 					<section className="locations container">
 						<ul className="locations__list tabs__list">
-							{cities.map((city) => (
+							{CITIES.map((city) => (
 								<li key={city} className="locations__item">
 									<a className={`locations__item-link tabs__item ${city === selectedCity ? 'tabs__item--active' : ''}`}
-										onClick={() => setCity(city)} href={`#${city.toLocaleLowerCase()}`}
+										onClick={() => setSelectedCity(city)} href={`#${city.toLocaleLowerCase()}`}
 									>
 										<span>{city}</span>
 									</a>
@@ -76,9 +77,9 @@ function MainPage({cards}: MainPageProps): JSX.Element {
 						</section>
 						<div className="cities__right-section">
 						<Map
-							cards={offersSorted}
-							city={offersSorted[0]}
-							activeCard={offersSorted[selectedCity]}
+							city={cards[0]}
+							points={cards}
+							selectedPoint={selectedCity}
 							isMainPage
 						/>
 						</div>
