@@ -4,6 +4,12 @@ export type Location = {
     zoom: number;
 }
 
+export type Host = {
+    name: string;
+    avatarUrl: string;
+    isPro: boolean;
+}
+
 export type CardProps = {
     id: string;
     title: string;
@@ -17,16 +23,7 @@ export type CardProps = {
 		name: string;
 		location: Location;
 	};
-    location: Location;     
-}
-
-export type Host = {
-    name: string;
-    avatarUrl: string;
-    isPro: boolean;
-}
-
-export type FullCardProps = CardProps & {
+    location: Location;
     description: string;
     bedrooms: number;
     goods: string[];

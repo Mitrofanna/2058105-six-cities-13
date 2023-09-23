@@ -1,28 +1,24 @@
-import { useState } from "react";
+import { MouseEventHandler, useState } from "react";
 import Card from "../card/card";
 import { CardProps } from "../card/type";
 import Map from "../map/map";
+import { JSX } from "react/jsx-runtime";
+import { CITIES } from "../../const";
+import cards from "../../mocks/offer-mocks";
 
-export type CardListProps = {
-    cards: CardProps[];   
+type CardListProps = {
+	handleMouseEnter: (id: string) => void;
+	handleMouseLeave: () => void;
+	selectedPoint: string | null;
 }
 
 
+function CardList({handleMouseEnter, handleMouseLeave, selectedPoint}: CardListProps): JSX.Element {
+    //const offersSorted : Record<string, CardProps[]> = {};
 
-function CardList({cards}: CardListProps): JSX.Element {
-    const offersSorted : Record<string, CardProps[]> = {};
+    const offersSorted = cards.filter((card: { city: { name: string; }; }) => card.city.name === selectedCity);
 	  
-	for(const card of cards) {
-		const city = card.city.name;
-		if(city in offersSorted) {
-			offersSorted[city].push(card);
-			continue;
-		}
-		offersSorted[city] = [card];
-		continue;
-	}
-
-	const [selectedCity, setSelectedCity] = useState<string>(cities[0]);
+	
     
     return (
         <div className="cities">
@@ -46,17 +42,19 @@ function CardList({cards}: CardListProps): JSX.Element {
                     </ul>
                 </form>
                 <div className="cities__places-list places__list tabs__content">
-                    {offersSorted[selectedCity].map((card) => <Card 
+                    {offersSorted[selectedCity].map((card: JSX.IntrinsicAttributes & { card: CardProps; onMouseEnter?: MouseEventHandler<HTMLElement> | undefined; onMouseLeave?: MouseEventHandler<HTMLElement> | undefined; }) => <Card 
                     {...card}
-                    key={card.id}                
+                    key={card.id} 
+                    onMouseEnter={() => handleMouseEnter(card.id)}
+				    onMouseLeave={handleMouseLeave}               
                     />)}
                 </div>
             </section>
             <div className="cities__right-section">
             <Map
-                city={}
-                points={}
-                selectedPoint={}
+                city={cards[0]}
+                points={cards}
+                selectedPoint={selectedCity}
                 isMainPage
             />
             </div>

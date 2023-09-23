@@ -12,7 +12,7 @@ export type MainPageProps = {
 }
 
 function MainPage(props: MainPageProps): JSX.Element {
-	const {cards} = props
+	const {cards} = props;
 	const offersSorted : Record<string, CardProps[]> = {};
 	  
 	for(const card of cards) {
@@ -25,8 +25,9 @@ function MainPage(props: MainPageProps): JSX.Element {
 		continue;
 	}
 
-	const [selectedCity, setSelectedCity] = useState<string>(CITIES[0]);
-	
+	const cities = Object.keys(offersSorted)
+	const [selectedCity, setSelectedCity] = useState<string>(cities[0]);
+
 	
 	return (
 		<div className="page page--gray page--main">
@@ -72,13 +73,16 @@ function MainPage(props: MainPageProps): JSX.Element {
 								</ul>
 							</form>
 							<div className="cities__places-list places__list tabs__content">
-								{offersSorted[selectedCity].map((card) => <Card {...card} key={card.id} />)}
+								{offersSorted[selectedCity].map((card) => <Card
+								{...card}
+								key={card.id}
+								/>)}
 							</div>
 						</section>
 						<div className="cities__right-section">
 						<Map
-							city={cards[0]}
-							points={cards}
+							city={offersSorted[selectedCity][0]}
+							points={offersSorted[selectedCity]}
 							selectedPoint={selectedCity}
 							isMainPage
 						/>
