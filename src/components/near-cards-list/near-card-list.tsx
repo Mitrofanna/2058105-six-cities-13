@@ -8,7 +8,11 @@ type NearCardListProps = {
 function NearCardList({cards}: NearCardListProps): JSX.Element {
     return (
         <div className="near-places__list places__list">
-		{cards.map((card) => (<Card {...card} key={card.id} />)).slice(0, 3)}
+		{cards.map((card) => (
+        <Card
+        card={card}
+        key={card.id}      
+        />)).slice(0, 3)}
 	</div>
     )
 }

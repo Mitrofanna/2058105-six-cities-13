@@ -127,7 +127,7 @@ function OfferPage({cards}: OfferPageProps): JSX.Element {
 							</section>
 						</div>
 					</div>
-					<Map city={cards[0]} points={cards} selectedPoint={''} isMainPage={false}/>
+					<Map city={fullCard} points={cards} selectedPoint={fullCard.city.name} isMainPage={false}/>
 				</section>
 				<div className="container">
 					<section className="near-places places">

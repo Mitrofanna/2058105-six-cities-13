@@ -63,8 +63,7 @@ const {points, selectedPoint, city, isMainPage} = props;
     )}
     ref={mapRef}
     style={{
-      height: '100%',
-      width: '100%',
+      minHeight: '500px',
     }} 
     >
     </section>
