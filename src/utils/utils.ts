@@ -1,5 +1,10 @@
 import { CardProps } from "../types/card";
 
+const dateOptions: Intl.DateTimeFormatOptions = {
+	month: 'long',
+	year: 'numeric'
+}
+
 function getOffersSorted(cards: CardProps[]) {
 	const offersSorted: Record<string, CardProps[]> = {};
 
@@ -17,4 +22,4 @@ function getOffersSorted(cards: CardProps[]) {
 	return offersSorted;
 }
 
-export default getOffersSorted;
+export {getOffersSorted, dateOptions};

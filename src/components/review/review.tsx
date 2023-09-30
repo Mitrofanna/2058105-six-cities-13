@@ -1,11 +1,16 @@
 import { ReviewProps } from "../../types/review";
 import Rating from "../rating/rating";
+import { dateOptions } from '../../utils/utils';
 
 type Reviewprops = {
     review: ReviewProps;
 }
 
 function Review({review}: Reviewprops): JSX.Element {
+	const date = new Date(review.date);
+	
+	const formattedDate = (new Intl.DateTimeFormat('en-US', dateOptions).format(date));
+
     return (
         <li className="reviews__item">
 			<div className="reviews__user user">
@@ -21,7 +26,7 @@ function Review({review}: Reviewprops): JSX.Element {
 				<p className="reviews__text">
 					{review.comment}
 				</p>
-				<time className="reviews__time" dateTime="2019-04-24">{review.date}</time>
+				<time className="reviews__time" dateTime="2019-04-24">{formattedDate}</time>
 			</div>
 		</li>							
     );
