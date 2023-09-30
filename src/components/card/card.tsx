@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { CardProps } from './type';
+import { CardProps } from '../../types/card';
 import { MouseEventHandler } from 'react';
 
 type PlaceCardProps = {

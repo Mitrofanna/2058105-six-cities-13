@@ -1,4 +1,4 @@
-import { CardProps } from "../components/card/type";
+import { CardProps } from "../types/card";
 
 function getOffersSorted(cards: CardProps[]) {
 	const offersSorted: Record<string, CardProps[]> = {};

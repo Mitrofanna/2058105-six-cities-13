@@ -1,4 +1,4 @@
-import { CardProps } from './type';
+import { CardProps } from '../../types/card';
 import { Link } from 'react-router-dom';
 
 function FavoriteCard({id, title, price, type, previewImage, isFavorite, isPremium, rating}: CardProps): JSX.Element {

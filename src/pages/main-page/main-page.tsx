@@ -1,5 +1,5 @@
 import Header from '../../components/header/header';
-import { CardProps } from '../../components/card/type';
+import { CardProps } from '../../types/card';
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { CITIES } from '../../const';

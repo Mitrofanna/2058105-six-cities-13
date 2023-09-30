@@ -1,5 +1,5 @@
 import Card from "../card/card";
-import { CardProps } from "../card/type";
+import { CardProps } from "../../types/card";
 import Map from "../map/map";
 import { JSX } from "react/jsx-runtime";
 

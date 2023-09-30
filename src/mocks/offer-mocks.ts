@@ -1,4 +1,4 @@
-import { CardProps } from '../components/card/type';
+import { CardProps } from '../types/card';
 
 const cards: CardProps[] = [
 	{

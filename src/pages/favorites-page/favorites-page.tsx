@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
-import { CardProps } from '../../components/card/type';
+import { CardProps } from '../../types/card';
 import FavoriteCard from '../../components/card/favorite-card';
 
 type FavoritesProps = {
