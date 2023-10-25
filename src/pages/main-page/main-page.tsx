@@ -44,7 +44,7 @@ function MainPage(): JSX.Element {
 					handleMouseEnter={handleMouseEnter}
 					handleMouseLeave={handleMouseLeave}
 					/>
-				</div> : <EmptyCardList />
+				</div> : <EmptyCardList selectedCity={selectedCity} />
         		}
 
 			</main>
