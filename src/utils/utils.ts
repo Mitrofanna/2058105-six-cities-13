@@ -5,6 +5,10 @@ const dateOptions: Intl.DateTimeFormatOptions = {
 	year: 'numeric'
 }
 
+function getSortedReviews(a:number, b: number) {
+	return a - b
+}
+
 function getOffersSorted(cards: CardProps[]) {
 	const offersSorted: Record<string, CardProps[]> = {};
 
@@ -22,4 +26,4 @@ function getOffersSorted(cards: CardProps[]) {
 	return offersSorted;
 }
 
-export {getOffersSorted, dateOptions};
+export {getOffersSorted, getSortedReviews, dateOptions};

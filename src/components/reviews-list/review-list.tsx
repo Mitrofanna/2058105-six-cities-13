@@ -7,11 +7,13 @@ type ReviewListProps = {
 }
 
 function ReviewList({reviews}: ReviewListProps): JSX.Element {
+	const unsortedReviews = reviews.map((review) => <Review review={review} />).slice(0, 10)
+
     return (
         <section className="offer__reviews reviews">
 			<h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
 			<ul className="reviews__list">
-				{reviews.map((review) => <Review review={review} />).slice(0, 10)}					
+				{unsortedReviews}					
 			</ul>
 			<FormReview />
 		</section>

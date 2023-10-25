@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet-async';
 import { CITIES } from '../../const';
 import EmptyCardList from '../../components/empty-card-list/empty-card-list';
 import CardList from '../../components/card-list/card-list';
-import getOffersSorted from '../../utils/utils';
+import {getOffersSorted} from '../../utils/utils';
 
 export type MainPageProps = {
 	cards: CardProps[];
