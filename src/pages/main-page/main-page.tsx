@@ -1,21 +1,18 @@
 import Header from '../../components/header/header';
-import { CardProps } from '../../types/card';
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { CITIES } from '../../const';
 import EmptyCardList from '../../components/empty-card-list/empty-card-list';
 import CardList from '../../components/card-list/card-list';
-import {getOffersSorted} from '../../utils/utils';
+import { getOffersSorted } from '../../utils/utils';
+import Locations from '../../components/locations/locations';
+import { useAppSelector } from '../../hooks/use-state';
 
-export type MainPageProps = {
-	cards: CardProps[];
-}
+function MainPage(): JSX.Element {
+	const cards = useAppSelector((state) => state.cards);
+	const selectedCity = useAppSelector((state) => state.selectedCity);
 
-function MainPage(props: MainPageProps): JSX.Element {
-	const {cards} = props;
-	  
 	const [id, setId] = useState<null | string>(null);
-	const [selectedCity, setSelectedCity] = useState<string>(CITIES[0]);
+	
 	const offersSorted = getOffersSorted(cards);
 
 	function handleMouseEnter(cardId: string): void {
@@ -25,7 +22,6 @@ function MainPage(props: MainPageProps): JSX.Element {
 	function handleMouseLeave(): void {
 		setId(null);
 	};
-
 	
 	return (
 		<div className="page page--gray page--main">
@@ -37,17 +33,7 @@ function MainPage(props: MainPageProps): JSX.Element {
 				<h1 className="visually-hidden">Cities</h1>
 				<div className="tabs">
 					<section className="locations container">
-						<ul className="locations__list tabs__list">
-							{CITIES.map((city) => (
-								<li key={city} className="locations__item">
-									<a className={`locations__item-link tabs__item ${city === selectedCity ? 'tabs__item--active' : ''}`}
-										onClick={() => setSelectedCity(city)} href={`#${city.toLocaleLowerCase()}`}
-									>
-										<span>{city}</span>
-									</a>
-								</li>
-							))}
-						</ul>
+						<Locations />
 					</section>
 				</div>
 				{offersSorted[selectedCity] !== undefined ? <div className="cities">
