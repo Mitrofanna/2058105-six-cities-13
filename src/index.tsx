@@ -13,7 +13,7 @@ const root = ReactDOM.createRoot(
 root.render(
 	<React.StrictMode>
 		<Provider store={store}>
-		<App cards={cards} reviews={reviews}/>
+			<App cards={cards} reviews={reviews}/>
 		</Provider>
 	</React.StrictMode>
 );
