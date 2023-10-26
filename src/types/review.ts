@@ -1,4 +1,3 @@
-
 export type ReviewProps = {
     date: string;
 	comment: string;
