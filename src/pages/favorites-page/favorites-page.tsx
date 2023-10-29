@@ -3,6 +3,7 @@ import Header from '../../components/header/header';
 import { useAppSelector } from '../../hooks/use-state';
 import { getOffersSorted } from '../../utils/utils';
 import Card from '../../components/card/card';
+import EmptyFavorites from '../../components/empty-favorites/empty-favorites';
 
 function FavoritesPage(): JSX.Element {
 	const allCards = useAppSelector((state) => state.cards);
@@ -15,6 +16,7 @@ function FavoritesPage(): JSX.Element {
 				<title>favorites offers</title>
 			</Helmet>
 			<Header />
+			{cards.length > 0 ? 
 			<main className="page__main page__main--favorites">
 				<div className="page__favorites-container container">
 					<section className="favorites">
@@ -38,6 +40,7 @@ function FavoritesPage(): JSX.Element {
 					</section>
 				</div>
 			</main>
+			: < EmptyFavorites/>}
 			<footer className="footer container">
 				<a className="footer__logo-link" href="main.html">
 					<img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33" />

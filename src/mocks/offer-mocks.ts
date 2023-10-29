@@ -21,7 +21,7 @@ const cards: CardProps[] = [
 			'zoom': 16
 		},
 		'isFavorite': true,
-		'isPremium': false,
+		'isPremium': true,
 		'rating': 5,
 		'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
 		'bedrooms': 3,
