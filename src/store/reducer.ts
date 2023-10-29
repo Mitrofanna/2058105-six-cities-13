@@ -1,23 +1,27 @@
 import { createReducer } from "@reduxjs/toolkit";
-import {selectCity} from './action';
-import { getOffers } from "./action";
+import { getOffers, getReviews, selectCity } from "./action";
 import { CITIES } from "../const";
 import cards from "../mocks/offer-mocks";
 import { InitialState } from "../types/state";
+import { reviews } from "../mocks/review-mocks";
 
 const initialState: InitialState = {
+    cards,
     selectedCity: CITIES[0],
-    cards: cards
+    reviews: reviews
 };
 
 const reducer = createReducer(initialState, (builder) => {
     builder
-      .addCase(selectCity, (state, action) => {
-        state.selectedCity = action.payload;
-      })
-      .addCase(getOffers, (state) => {
-        state.cards = cards;
-      });
+    .addCase(getOffers, (state) => {
+      state.cards = cards;
+    })
+    .addCase(selectCity, (state, action) => {
+      state.selectedCity = action.payload;
+    })
+    .addCase(getReviews, (state) => {
+      state.reviews = reviews;
+    })
   });
   
   export {reducer};

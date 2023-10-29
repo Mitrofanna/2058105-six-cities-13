@@ -5,15 +5,12 @@ import Map from '../../components/map/map';
 import { useParams } from 'react-router-dom';
 import NearCardList from '../../components/near-cards-list/near-card-list';
 import ReviewList from '../../components/reviews-list/review-list';
-import { ReviewProps } from '../../types/review';
+import { useAppSelector } from '../../hooks/use-state';
 
-export type OfferPageProps = {
-	cards: CardProps[];
-	reviews: ReviewProps[];
-}
-
-function OfferPage({cards, reviews}: OfferPageProps): JSX.Element {
+function OfferPage(): JSX.Element {
 	const {id} = useParams();
+	const cards = useAppSelector((state) => state.cards);
+	const reviews = useAppSelector((state) => state.reviews);
 	const fullCard = cards.find((item) => item.id === id) as CardProps;
 
 	return (

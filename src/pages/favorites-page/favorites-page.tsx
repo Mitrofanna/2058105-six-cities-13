@@ -1,28 +1,13 @@
 import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
-import { CardProps } from '../../types/card';
-import FavoriteCard from '../../components/card/favorite-card';
+import { useAppSelector } from '../../hooks/use-state';
+import { getOffersSorted } from '../../utils/utils';
+import Card from '../../components/card/card';
 
-type FavoritesProps = {
-	cards: CardProps[];
-}
-
-function FavoritesPage({cards}: FavoritesProps): JSX.Element {
-	const offersSorted : Record<string, CardProps[]> = {};
-
-	for(const card of cards) {
-		if(!card.isFavorite) {
-			continue;
-		}
-		const city = card.city.name;
-		if(city in offersSorted) {
-			offersSorted[city].push(card);
-			continue;
-		}
-		offersSorted[city] = [card];
-		continue;
-	}
-
+function FavoritesPage(): JSX.Element {
+	const allCards = useAppSelector((state) => state.cards);
+	const cards = allCards.filter((card) => card.isFavorite)
+	const offersSorted = getOffersSorted(cards);
 
 	return (
 		<div className="page">
@@ -30,30 +15,25 @@ function FavoritesPage({cards}: FavoritesProps): JSX.Element {
 				<title>favorites offers</title>
 			</Helmet>
 			<Header />
-
 			<main className="page__main page__main--favorites">
 				<div className="page__favorites-container container">
 					<section className="favorites">
 						<h1 className="favorites__title">Saved listing</h1>
 						<ul className="favorites__list">
 							{Object.entries(offersSorted).map(([city, offersSorted]) => (
-
 								<li key={city} className="favorites__locations-items">
 									<div className="favorites__locations locations locations--current">
 										<div className="locations__item">
 											<a className="locations__item-link" href={`#${city.toLocaleLowerCase()}`}>
-												<span>Amsterdam</span>
+												<span>{city}</span>
 											</a>
 										</div>
 									</div>
 									<div className="favorites__places">
-
-										{offersSorted.map((card) => <FavoriteCard {...card} key={card.id} />)}
+										{offersSorted.map((card) => <Card card={card} key={card.id} />)}
 									</div>
 								</li>
 							))}
-
-
 						</ul>
 					</section>
 				</div>
