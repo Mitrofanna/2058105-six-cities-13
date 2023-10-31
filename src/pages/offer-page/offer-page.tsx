@@ -10,7 +10,6 @@ import { useAppSelector } from '../../hooks/use-state';
 function OfferPage(): JSX.Element {
 	const {id} = useParams();
 	const cards = useAppSelector((state) => state.cards);
-	const reviews = useAppSelector((state) => state.reviews);
 	const fullCard = cards.find((item) => item.id === id) as CardProps;
 
 	return (
@@ -90,10 +89,9 @@ function OfferPage(): JSX.Element {
 									<p className="offer__text">
 										{fullCard.description}
 									</p>
-
 								</div>
 							</div>
-							<ReviewList reviews={reviews} />
+							<ReviewList />
 						</div>
 					</div>
 					<Map city={fullCard} points={cards} selectedPoint={fullCard.city.name} isMainPage={false}/>
@@ -101,7 +99,7 @@ function OfferPage(): JSX.Element {
 				<div className="container">
 					<section className="near-places places">
 						<h2 className="near-places__title">Other places in the neighbourhood</h2>
-						<NearCardList cards={cards} />
+						<NearCardList />
 					</section>
 				</div>
 			</main>

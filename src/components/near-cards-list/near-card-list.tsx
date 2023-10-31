@@ -1,11 +1,9 @@
 import Card from "../card/card";
-import { CardProps } from "../../types/card";
+import { useAppSelector } from "../../hooks/use-state";
 
-type NearCardListProps = {
-    cards: CardProps[];
-}
+function NearCardList(): JSX.Element {
+    const cards = useAppSelector((state) => state.cards);
 
-function NearCardList({cards}: NearCardListProps): JSX.Element {
     return (
         <div className="near-places__list places__list">
 		{cards.map((card) => (

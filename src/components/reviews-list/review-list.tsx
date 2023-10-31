@@ -1,13 +1,10 @@
-import { ReviewProps } from "../../types/review";
+import { useAppSelector } from "../../hooks/use-state";
 import { FormReview } from "../form-review/form-review";
 import Review from "../review/review";
 
-type ReviewListProps = {
-    reviews: ReviewProps[];
-}
-
-function ReviewList({reviews}: ReviewListProps): JSX.Element {
-	const unsortedReviews = reviews.map((review) => <Review review={review} />).slice(0, 10)
+function ReviewList(): JSX.Element {
+	const reviews = useAppSelector((state) => state.reviews);
+	const unsortedReviews = reviews.map((review) => <Review review={review} />).slice(0, 10);
 
     return (
         <section className="offer__reviews reviews">

@@ -8,7 +8,6 @@ type Reviewprops = {
 
 function Review({review}: Reviewprops): JSX.Element {
 	const date = new Date(review.date);
-	
 	const formattedDate = (new Intl.DateTimeFormat('en-US', dateOptions).format(date));
 
     return (
