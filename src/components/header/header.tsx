@@ -1,5 +1,6 @@
 import { Link, NavLink } from 'react-router-dom';
 import { AppRoute } from '../../const';
+import { useAppSelector } from '../../hooks/use-state';
 
 type HeaderProps = {
 	HideNavigation?: boolean;
@@ -10,6 +11,8 @@ function Header({
 	HideNavigation = false,
 	IsAuthorized = true
 }: HeaderProps) {
+	const allCards = useAppSelector((state) => state.cards);
+	const cards = allCards.filter((card) => card.isFavorite);
 	return (
 		<header className="header">
 			<div className="container">
@@ -31,7 +34,7 @@ function Header({
 											<div className="header__avatar-wrapper user__avatar-wrapper">
 											</div>
 											<span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-											<span className="header__favorite-count">3</span>
+											<span className="header__favorite-count">{cards.length}</span>
 										</Link>
 									</li>
 									<li className="header__nav-item">

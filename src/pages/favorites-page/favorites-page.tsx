@@ -7,7 +7,7 @@ import EmptyFavorites from '../../components/empty-favorites/empty-favorites';
 
 function FavoritesPage(): JSX.Element {
 	const allCards = useAppSelector((state) => state.cards);
-	const cards = allCards.filter((card) => card.isFavorite)
+	const cards = allCards.filter((card) => card.isFavorite);
 	const offersSorted = getOffersSorted(cards);
 
 	return (
