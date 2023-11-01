@@ -1,30 +1,32 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { getOffers, getReviews, selectCity, requireAuthorization } from "./action";
+import { getOffers, getReviews, selectCity, requireAuthorization, loadOffers } from "./action";
 import { AuthorizationStatus, CITIES } from "../const";
-import cards from "../mocks/offer-mocks";
-import { reviews } from "../mocks/review-mocks";
+import { InitialState } from "../types/state";
 
-const initialState = {
-    cards,
+const initialState: InitialState = {
+    cards: [],
     selectedCity: CITIES[0] as string,
-    reviews: reviews,
+    reviews: [],
     authorizationStatus: AuthorizationStatus.Unknown
 };
 
 const reducer = createReducer(initialState, (builder) => {
     builder
-    .addCase(getOffers, (state) => {
-      state.cards = cards;
+    .addCase(getOffers, (state, action) => {
+      state.cards = action.payload;
     })
     .addCase(selectCity, (state, action) => {
       state.selectedCity = action.payload;
     })
-    .addCase(getReviews, (state) => {
-      state.reviews = reviews;
+    .addCase(getReviews, (state, action) => {
+      state.reviews = action.payload;
     })
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;
-    });
+    })
+    .addCase(loadOffers, (state, action) => {
+      state.cards = action.payload;
+    })
   });
   
   export {reducer};

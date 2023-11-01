@@ -2,15 +2,15 @@ export type Location = {
     latitude: number;
     longitude: number;
     zoom: number;
-}
+};
 
 export type Host = {
     name: string;
     avatarUrl: string;
     isPro: boolean;
-}
+};
 
-export type CardProps = {
+export type Card = {
     id: string;
     title: string;
     price: number;
@@ -30,4 +30,6 @@ export type CardProps = {
     host: Host;
     images: string[];
     maxAdults: number;
-}
+};
+
+export type Cards = Card[];
