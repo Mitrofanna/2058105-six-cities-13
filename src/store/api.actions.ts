@@ -2,13 +2,24 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { AppDispatch, State } from "../types/state";
 import { AxiosInstance } from "axios";
 import { Cards } from "../types/card";
-import { APIRoute, AuthorizationStatus } from "../const";
-import { loadOffers, requireAuthorization } from "./action";
+import { APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from "../const";
+import { loadOffers, requireAuthorization, setError } from "./action";
 import { dropToken, saveToken } from "../services/token";
 import { AuthData } from "../types/auth-data";
 import { UserData } from "../types/user-data";
+import { store } from ".";
 
-export const fetchCards = createAsyncThunk<void, undefined, {
+export const clearErrorAction = createAsyncThunk(
+    'clearError',
+    () => {
+      setTimeout(
+        () => store.dispatch(setError(null)),
+        TIMEOUT_SHOW_ERROR,
+      );
+    },
+  );
+
+export const fetchCardsAction = createAsyncThunk<void, undefined, {
     dispatch: AppDispatch;
     state: State;
     extra: AxiosInstance;
@@ -20,7 +31,7 @@ export const fetchCards = createAsyncThunk<void, undefined, {
     },
 );
 
-export const checkAuthorization = createAsyncThunk<void, undefined, {
+export const checkAuthorizationAction = createAsyncThunk<void, undefined, {
     dispatch: AppDispatch;
     state: State;
     extra: AxiosInstance;

@@ -31,7 +31,9 @@ export enum APIRoute {
 	Cards = '/cards',
 	Login = '/login',
 	Logout = '/logout',
-  }
+}
+
+export const TIMEOUT_SHOW_ERROR = 2000;
 
 const URL_MARKER_DEFAULT =
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
