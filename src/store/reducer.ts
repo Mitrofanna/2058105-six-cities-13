@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { getOffers, getReviews, selectCity, requireAuthorization, loadOffers } from "./action";
+import { getOffers, getReviews, selectCity, requireAuthorization, loadOffers, setError } from "./action";
 import { AuthorizationStatus, CITIES } from "../const";
 import { InitialState } from "../types/state";
 
@@ -7,7 +7,8 @@ const initialState: InitialState = {
     cards: [],
     selectedCity: CITIES[0] as string,
     reviews: [],
-    authorizationStatus: AuthorizationStatus.Unknown
+    authorizationStatus: AuthorizationStatus.Unknown,
+    error: null
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -26,6 +27,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadOffers, (state, action) => {
       state.cards = action.payload;
+    })
+    .addCase(setError, (state, action) => {
+      state.error = action.payload;
     })
   });
   
