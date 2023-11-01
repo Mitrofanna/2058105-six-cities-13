@@ -5,17 +5,8 @@ import { Cards } from "../types/card";
 import { APIRoute, AuthorizationStatus } from "../const";
 import { loadOffers, requireAuthorization } from "./action";
 import { dropToken, saveToken } from "../services/token";
-
-export type AuthData = {
-    login: string,
-    password: string
-}
-
-export type UserData = {
-    id: number;
-    email: string;
-    token: string;
-  };
+import { AuthData } from "../types/auth-data";
+import { UserData } from "../types/user-data";
 
 export const fetchCards = createAsyncThunk<void, undefined, {
     dispatch: AppDispatch;
